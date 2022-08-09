@@ -21,7 +21,7 @@ const Page = ({
     Object.entries({
       src: 'https://utteranc.es/client.js',
       repo: 'PaulieScanlon/utterances-comments-repo',
-      'issue-term': 'url',
+      'issue-term': 'title',
       theme: 'github-light',
       crossOrigin: 'anonymous',
       defer: true
@@ -53,5 +53,15 @@ export const query = graphql`
     }
   }
 `;
+
+export const Head = ({
+  data: {
+    mdx: {
+      frontmatter: { title }
+    }
+  }
+}) => {
+  return <title>{title}</title>;
+};
 
 export default Page;
