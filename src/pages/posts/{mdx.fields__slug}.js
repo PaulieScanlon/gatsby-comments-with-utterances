@@ -4,8 +4,7 @@ import { graphql, Link } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-// import VanillaScript from '../../components/vanillia-script';
-import GatsbyScript from '../../components/gatsby-script';
+import UtterancesComments from '../../components/utterances-comments';
 
 const Page = ({
   pageContext,
@@ -23,8 +22,7 @@ const Page = ({
       <MDXProvider>
         <MDXRenderer>{body}</MDXRenderer>
       </MDXProvider>
-      <GatsbyScript />
-      {/* <VanillaScript /> */}
+      <UtterancesComments repo="PaulieScanlon/utterances-comments-repo" />
     </Fragment>
   );
 };
