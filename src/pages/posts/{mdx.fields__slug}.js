@@ -1,8 +1,11 @@
-import React, { createRef, Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { graphql, Link } from 'gatsby';
 
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+
+// import VanillaScript from '../../components/vanillia-script';
+import GatsbyScript from '../../components/gatsby-script';
 
 const Page = ({
   pageContext,
@@ -13,32 +16,15 @@ const Page = ({
     }
   }
 }) => {
-  const utteranceRef = createRef();
-
-  useEffect(() => {
-    const script = document.createElement('script');
-
-    Object.entries({
-      src: 'https://utteranc.es/client.js',
-      repo: 'PaulieScanlon/utterances-comments-repo',
-      'issue-term': 'title',
-      theme: 'github-light',
-      crossOrigin: 'anonymous',
-      defer: true
-    }).forEach(([key, value]) => {
-      script.setAttribute(key, value);
-    });
-
-    utteranceRef.current.appendChild(script);
-  }, [utteranceRef]);
   return (
     <Fragment>
       <Link to="/">Back</Link>
       <h1>{title}</h1>
       <MDXProvider>
         <MDXRenderer>{body}</MDXRenderer>
-        <div ref={utteranceRef} id="utterances_container" />
       </MDXProvider>
+      <GatsbyScript />
+      {/* <VanillaScript /> */}
     </Fragment>
   );
 };
