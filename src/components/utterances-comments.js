@@ -1,32 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 const UtterancesComments = ({ repo, theme, issueTerm }) => {
+  const ref = useRef();
+
   useEffect(() => {
-    const utterances = document.querySelector('.utterances');
     const script = document.createElement('script');
-    Object.entries({
+
+    const config = {
       src: 'https://utteranc.es/client.js',
       repo: repo,
       'issue-term': issueTerm,
       theme: theme,
       crossOrigin: 'anonymous',
       defer: true
-    }).forEach(([key, value]) => {
+    };
+
+    Object.entries(config).forEach(([key, value]) => {
       script.setAttribute(key, value);
     });
+
     setTimeout(() => {
-      document.getElementById('utterances-target').appendChild(script);
+      ref.current.appendChild(script);
     }, 300);
+  }, [repo, theme, issueTerm]);
 
-    return () => {
-      if (utterances) {
-        utterances.remove();
-      }
-    };
-  }, [utterances, script, repo, theme, issueTerm]);
-
-  return <div id="utterances-target" />;
+  return <div ref={ref} />;
 };
 
 UtterancesComments.defaultProps = {
