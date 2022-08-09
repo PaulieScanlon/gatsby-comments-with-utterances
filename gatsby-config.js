@@ -3,6 +3,7 @@ module.exports = {
     name: 'gatsby-comments-with-utterances'
   },
   plugins: [
+    'gatsby-plugin-postcss',
     'gatsby-plugin-mdx',
     {
       resolve: 'gatsby-source-filesystem',
