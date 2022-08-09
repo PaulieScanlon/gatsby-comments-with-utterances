@@ -12,6 +12,5 @@ module.exports = {
         path: `${__dirname}/content/posts`
       }
     }
-  ],
-  partytownProxiedURLs: ['https://utteranc.es/client.js']
+  ]
 };
