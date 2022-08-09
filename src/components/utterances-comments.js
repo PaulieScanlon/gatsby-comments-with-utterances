@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 const UtterancesComments = ({ repo, theme, issueTerm }) => {
   useEffect(() => {
     const utterances = document.querySelector('.utterances');
-    if (utterances) {
-      utterances.remove();
-    }
     const script = document.createElement('script');
-
     Object.entries({
       src: 'https://utteranc.es/client.js',
       repo: repo,
@@ -19,8 +15,16 @@ const UtterancesComments = ({ repo, theme, issueTerm }) => {
     }).forEach(([key, value]) => {
       script.setAttribute(key, value);
     });
-    document.getElementById('utterances-target').appendChild(script);
-  }, [repo, theme, issueTerm]);
+    setTimeout(() => {
+      document.getElementById('utterances-target').appendChild(script);
+    }, 300);
+
+    return () => {
+      if (utterances) {
+        utterances.remove();
+      }
+    };
+  }, [utterances, script, repo, theme, issueTerm]);
 
   return <div id="utterances-target" />;
 };
